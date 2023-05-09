@@ -10,7 +10,7 @@ const productSchema = mongoose.Schema(
     decription: {
       type: String,
       required: [true, "Add a brief description of the product"],
-      maxlength: 200
+      maxlength: [200, "Description entered should not exceed 200 characters"]
     },
     image: {
       type: String,
