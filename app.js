@@ -5,9 +5,11 @@ const morgan = require('morgan');
 const mongoose = require('mongoose');
 app.use(bodyParser.json());
 app.use(morgan('tiny'))
-const cors = require('cors')
+const cors = require('cors');
+const router = require('./src/routes/index.route');
 require('dotenv').config();
 
+app.use('/api/v1', router)
 app.use(cors());
 app.options('*', cors())
 
