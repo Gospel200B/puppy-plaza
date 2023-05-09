@@ -3,13 +3,16 @@ const app = express();
 const bodyParser = require('body-parser');
 const morgan = require('morgan');
 const mongoose = require('mongoose');
-
 app.use(bodyParser.json());
 app.use(morgan('tiny'))
+const cors = require('cors')
 require('dotenv').config();
 
+app.use(cors());
+app.options('*', cors())
+
 mongoose.connect(process.env.db,{useUnifiedTopology: true, dbName: 'puppy-plaza'}).then(() => {
-    console.log('database connected');
+    console.log('Database connection ready....');
 })
 .catch((err) => {
     console.log(err);
