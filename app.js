@@ -3,7 +3,8 @@ const app = express();
 const bodyParser = require('body-parser');
 const morgan = require('morgan');
 const mongoose = require('mongoose');
-app.use(bodyParser.json());
+app.use(bodyParser.json())
+app.use(express.json())
 app.use(morgan('tiny'))
 const cors = require('cors');
 const router = require('./src/routes/index.route');
