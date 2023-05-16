@@ -7,7 +7,7 @@ const productSchema = mongoose.Schema(
       required: [true, "Add the name of the product"]
     },
 
-    decription: {
+    description: {
       type: String,
       required: [true, "Add a brief description of the product"],
       maxlength: [200, "Description entered should not exceed 200 characters"]
@@ -56,5 +56,13 @@ const productSchema = mongoose.Schema(
   },
   { timestamp: true }
 );
+
+productSchema.virtual('id').get(function() {
+  return this._id.toHexString();
+});
+
+productSchema.set('toJSON' , { 
+  virtuals: true,
+})
 
 exports.Product = mongoose.model("Product", productSchema);
