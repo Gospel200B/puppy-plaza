@@ -8,11 +8,15 @@ app.use(express.json());
 app.use(morgan("tiny"));
 const cors = require("cors");
 const router = require("./src/routes/index.route");
+const authJwt = require("./src/middlewares/express-jwt");
+const { errorHandler } = require("./src/middlewares/error-handler");
 require("dotenv").config();
 
 app.use("/api/v1", router);
 app.use(cors());
 app.options("*", cors());
+app.use(authJwt)
+app.use(errorHandler)
 
 mongoose
   .connect(process.env.db, { useUnifiedTopology: true, dbName: "puppy-plaza" })
